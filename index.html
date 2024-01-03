@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr" >
+<head>
+  <meta charset="UTF-8">
+<link rel="icon" href="img/favicon.png" type="image/x-icon">
+<meta name="author" content="GUINARD Maxime">
+  <title>Logiciel ToDoList : Gérez vos tâches efficacement</title>
+  <meta name="description" content="Optimisez votre productivité en découvrant comment utiliser efficacement une liste de tâches pour organiser votre vie personnelle et professionnelle."/>
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
+  <meta name="keywords" content="todolist, gestion des tâches, organisation, productivité, priorités">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://minigame-maxime-guinard.fr/todolist/" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Comment utiliser efficacement une to-do list ? | Maxime" />
+<meta property="og:description" content="Découvrez comment utiliser une to-do list pour organiser votre vie et votre travail de manière plus productive. Suivez nos conseils pour vos todo." />
+<meta property="og:url" content="https://minigame-maxime-guinard.fr/todolist/" />
+<meta property="og:site_name" content="Maxime GUINARD" />
+<meta property="article:section" content="SEO / SEA" />
+<meta property="og:updated_time" content="2023-03-19T10:46:52+00:00" />
+<meta property="og:image" content="https://maxime-guinard.fr/wp-content/uploads/2023/03/todo-list-website-1024x681.jpg" />
+<meta property="og:image:secure_url" content="https://maxime-guinard.fr/wp-content/uploads/2023/03/todo-list-website-1024x681.jpg" />
+<meta property="og:image:width" content="1024" />
+<meta property="og:image:height" content="681" />
+<meta property="og:image:alt" content="todo list website" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="article:published_time" content="2023-03-19T10:26:02+00:00" />
+<meta property="article:modified_time" content="2023-03-19T10:46:52+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Comment utiliser efficacement une to-do list ? | Maxime" />
+<meta name="twitter:description" content="Découvrez comment utiliser une to-do list pour organiser votre vie et votre travail de manière plus productive. Suivez nos conseils pour vos todo." />
+<meta name="twitter:image" content="https://maxime-guinard.fr/wp-content/uploads/2023/03/todo-list-website-1024x681.jpg" />
+<meta name="twitter:label1" content="Écrit par" />
+<meta name="twitter:data1" content="Maxime GUINARD" />
+<meta name="twitter:label2" content="Temps de lecture" />
+<meta name="twitter:data2" content="4 minutes" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./style.css">
+
+<script type="application/ld+json">{
+"@context": "https://schema.org/",
+"@type": "CreativeWorkSeries",
+"name": "Todolist tout savoir !",
+"aggregateRating": {
+"@type": "AggregateRating",
+"ratingValue": "5",
+"bestRating": "5",
+"ratingCount": "75"
+}
+}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment une todoliste peut-elle aider à améliorer la productivité ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Une todoliste peut aider à améliorer la productivité en permettant de mieux organiser son temps et ses ressources pour accomplir les tâches les plus importantes. Elle peut également aider à rester concentré sur les tâches à accomplir, à ne pas perdre de temps sur des tâches moins importantes et à éviter les distractions. Enfin, une todoliste peut aider à réduire le stress et l'anxiété en donnant une vue d'ensemble sur les tâches à accomplir et en permettant de mieux gérer les délais."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment une todoliste peut-elle aider à atteindre ses objectifs ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Une todoliste peut aider à atteindre ses objectifs en permettant de mieux planifier et d'organiser son temps pour accomplir les tâches nécessaires. Elle permet également de rester concentré sur les tâches importantes, de ne pas se laisser distraire et de suivre la progression de chaque tâche pour s'assurer que les objectifs sont atteints. Enfin, une todoliste peut aider à se rappeler des échéances importantes pour s'assurer que les projets sont terminés à temps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment intégrer une todoliste dans sa routine quotidienne ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pour intégrer une todoliste dans sa routine quotidienne, il est important de déterminer quand il est le plus efficace de planifier ses tâches pour la journée. Certaines personnes préfèrent le faire le soir pour préparer la journée suivante, tandis que d'autres préfèrent le faire le matin. Il est également important de trouver un format qui convient le mieux, qu'il s'agisse d'un cahier, d'une application de productivité ou d'une liste papier. Il est conseillé de prendre le temps de mettre à jour régulièrement la todoliste en fonction de l'évolution des projets et de se fixer des objectifs réalisables pour éviter de se sentir dépassé."
+      }
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+<!-- partial:index.partial.html -->
+<div class="app-container" id="taskList">
+  <h1 class="app-header">TO DO LIST</h1>
+
+  <div class="add-task">
+    <input type="text" autocomplete="off" placeholder="Add New Task" v-model="tasks.name" @keyup.enter="newItem" class="task-input">
+		<input type="submit" value="" class="submit-task" @click="newItem" title="Ajouter une tâche">
+  </div>
+  <ul class="task-list">
+		<li class="task-list-item" v-for="task in tasks">
+			<label class="task-list-item-label">
+        <input type="checkbox">
+				<span>{{task.name}}</span>
+			</label>
+			<span @click="delItem(task)" class="delete-btn" title="Supprimer la tâche">{{task.del}}</span>
+
+		</li>
+	</ul>
+
+<h2>Pourquoi créer une To Do List?</h2>
+
+<p>Les To Do List sont un outil simple mais efficace pour améliorer votre productivité et votre efficacité. Voici quelques raisons pour lesquelles vous devriez créer une To Do List dès aujourd'hui :</p>
+
+<h2>Vous ne risquez plus d'oublier des tâches</h2> <p>Nous avons tous été dans cette situation où nous avons oublié de faire quelque chose d'important. Peut-être que vous avez oublié d'envoyer un e-mail crucial, ou peut-être avez-vous manqué une date limite importante. Une To Do List vous permet de noter toutes vos tâches importantes en un seul endroit, ce qui réduit les risques d'oubli. Vous pouvez également ajouter des rappels pour chaque tâche afin de vous assurer que rien n'est oublié.</p>
+
+<h2>Vous pouvez hiérarchiser vos tâches</h2> <p>Avec une To Do List, vous pouvez facilement hiérarchiser vos tâches en fonction de leur importance ou de leur urgence. Cela vous permet de vous concentrer sur les tâches les plus importantes et de ne pas perdre de temps sur des tâches moins prioritaires. Vous pouvez visualiser votre <a href="https://asana.com/fr/resources/make-better-to-do-lists" rel="noopener" target="_blank">charge de travail</a></p> <p>Lorsque vous créez une To Do List, vous pouvez voir toutes les tâches que vous devez accomplir en un seul coup d'œil. Cela vous permet de mieux comprendre la charge de travail que vous avez et de planifier votre journée en conséquence. Vous pouvez également décider quelles tâches vous pouvez déléguer ou reporter si vous êtes submergé.</p>
+
+<h2>Vous pouvez mieux gérer votre temps</h2> <p>Une To Do List peut également vous aider à mieux gérer votre temps. En planifiant votre journée à l'avance et en <a href="https://asana.com/fr/guide/get-started/try/plan-your-day" rel="noopener" target="_blank">hiérarchisant vos tâches</a>, vous pouvez vous assurer que vous consacrez votre temps aux tâches les plus importantes et que vous ne gaspillez pas votre temps sur des tâches non prioritaires.</p>
+
+Vous pouvez suivre vos progrès</h2> <p>En cochant les tâches que vous avez accomplies, vous pouvez suivre votre progrès tout au long de la journée. Cela peut vous aider à rester motivé et à vous rappeler que vous accomplissez réellement des choses, même si vous vous sentez submergé.</p>
+
+<script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Todo List pour s'organiser",
+  "url": "https://minigame-maxime-guinard.fr/todolist/",
+  "logo": "https://maxime-guinard.fr/wp-content/uploads/2023/02/Logo_Maxime_BLANC-e1675516847866.png.webp",
+  "description": "Nous avons tous été dans cette situation où nous avons oublié de faire quelque chose d'important. Peut-être que vous avez oublié d'envoyer un e-mail crucial, ou peut-être avez-vous manqué une date limite importante.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Rue du Todolist",
+    "addressLocality": "Todolist",
+    "postalCode": "12345",
+    "addressCountry": "France"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "0665132436",
+    "contactType": "customer support"
+  },
+  "sameAs": [
+    "https://www.instagram.com/maxime.guinard.dev/",
+    "https://github.com/MaximeGuinard",
+    "https://www.linkedin.com/notifications/?filter=all"
+  ]
+}
+</script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Todolist en france ça donne quoi ?",
+      "item": "https://minigame-maxime-guinard.fr/todolist/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Les meilleurs applications pour gérer ses tâches (to-do lists)",
+  "description": "Nouvelle vidéo ! Aujourd'hui, on parle de productivité ! A un moment donné, quand on gère pas mal de projets, il devient important de trouver les bons outils pour gérer ses tâches. Dans cette vidéo, je passe en revue toutes les options qui s'offrent à vous. De TickTick à Todoist, en passant par Kairn ou Akiflow, vous allez avoir toutes les cartes en main pour bien choisir. Voilà les liens mentionnés dans la vidéo.",
+  "thumbnailUrl": "https://blog.maxime-guinard.fr/wp-content/uploads/2023/05/personne-qui-regarde-la-data-du-moment-570x420.jpg",
+  "uploadDate": "2023-05-30",
+  "duration": "PT5M30S",
+  "contentUrl": "https://www.youtube.com/watch?v=3IqwPJAFolo&t",
+  "embedUrl": "https://www.youtube.com/watch?v=3IqwPJAFolo&t",
+  "interactionCount": "12345"
+}
+</script>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script><script  src="./script.js"></script>
+<footer>
+  <ul>
+    <li><a href="https://minigame-maxime-guinard.fr/todolist/limportance-des-todolist.html">L'importance de la Todo</a></li>
+    <li><a href="https://minigame-maxime-guinard.fr/todolist/pourquoi-lutiliser-la-todolist.html">Pourquoi la Todolist</a></li>
+    <li><a href="https://minigame-maxime-guinard.fr/todolist/faq-todolist.html">Todo FAQ</a></li>
+  </ul>
+</footer>
+</body>
+
+</html>
